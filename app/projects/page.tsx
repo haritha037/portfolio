@@ -1,3 +1,7 @@
 export default function Projects() {
-  return <div>Projects</div>;
+  return (
+    <div className="bg-white min-h-screen">
+      <p className=" text-primary">Projects</p>
+    </div>
+  );
 }
