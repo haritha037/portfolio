@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  // weight: ["400", "500", "600", "700"], // Specify weights you want
 });
 
 const geistMono = Geist_Mono({
@@ -26,11 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-white dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white transition-colors dark:bg-gray-900 dark:text-white`}
       >
-        <Navbar />
-        <main className="pt-16 min-h-screen">{children}</main>
-        <footer>Footer</footer>
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-16 min-h-screen">{children}</main>
+          <footer>Footer</footer>
+        </ThemeProvider>
       </body>
     </html>
   );
